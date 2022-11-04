@@ -8,4 +8,9 @@ export default class ProductsService {
     const products = await this.products.findAll();
     return products;
   }
+
+  public async insert(product: IProduct): Promise<IProduct> {
+    const newProduct = await this.products.insert(product);
+    return newProduct;
+  }
 }
