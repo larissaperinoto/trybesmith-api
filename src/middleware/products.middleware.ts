@@ -8,8 +8,8 @@ const verifyProductsFields = (req: Request, res: Response, next: NextFunction) =
   const fieldsRequired = validateProductsFields(req.body);
   if (fieldsRequired) return res.status(400).json({ message: fieldsRequired });
 
-  const nameAndAmountFormat = validateNameAndAmountFields(req.body);
-  if (nameAndAmountFormat) return res.status(422).json({ message: nameAndAmountFormat });
+  const fieldsFormat = validateNameAndAmountFields(req.body);
+  if (fieldsFormat) return res.status(422).json({ message: fieldsFormat });
 
   next();
 };

@@ -8,4 +8,9 @@ export default class ProductsController {
     const orders = await this.ordersService.findAll();
     res.status(200).json(orders);
   }
+
+  public async insert(req: Request, res: Response) {
+    const newOrder = await this.ordersService.insert(req.body.productsIds, req.body.user.id);
+    res.status(201).json(newOrder);
+  }
 }
