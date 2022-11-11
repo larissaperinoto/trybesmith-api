@@ -1,3 +1,4 @@
+import { NextFunction } from 'express';
 import jsonwebtoken from 'jsonwebtoken';
 import UsersModel from '../models/users.model';
 import { IUser } from '../interfaces/IUser';
@@ -10,19 +11,16 @@ export default class UsersService {
 
   public async insert(user: IUser) {
     const newUser = await this.users.insert(user);
-
     return this.generateToken(newUser);
   }
 
-  public async login(login:ILogin) {
+  public async login(login:ILogin, next: NextFunction) {
     const user = await this.users.findUserByUsernameAndPassword(login);
 
     if (!user || user.length === 0) {
-      // throw new HttpException(401, 'Username or password invalid'); Descrobrir pq não funciona :,(
-      return { status: 401, message: { message: 'Username or password invalid' } };
+      return next({ status: 401, message: 'Username or password invalid' });
     }
-
-    return { status: 200, message: { token: this.generateToken(user[0]) } };
+    return this.generateToken(user[0]);
   }
 
   public generateToken(user:IUser) {

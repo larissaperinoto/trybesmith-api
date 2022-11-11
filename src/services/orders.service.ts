@@ -10,7 +10,6 @@ export default class OrderService {
 
   public async findAll() {
     const orders = await this.orders.findAll();
-
     return orders;
   }
 
