@@ -1,0 +1,343 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "TrybeSmith API",
+    "description": "This API allows you to read, update, create and remove items from a medieval products store",
+    "contact": {
+      "email": "perinotolarissa@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/products": {
+      "get": {
+        "summary": "Read all products",
+        "description": "Returns an array with all products registered in the store",
+        "tags": ["Products"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "aplication/json": {
+                "type": "array",
+                "schema": {
+                    "items": {
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "amount": {
+                        "type": "string"
+                      },
+                      "orderId": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Register a new product",
+        "description": "Allows the registration of a new product in the store",
+        "tags": ["Products"],
+        "requestBody": {
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Products"
+              },
+              "examples": {
+                "product": {
+                  "value": {
+                    "name": "Espada longa",
+                    "amount": "30 peças de ouro"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "aplication/json": {
+                "type": "array",
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "amount": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "'name' and 'amount' are required"
+          },
+          "422": {
+            "description": "'name' and 'amount' must be a string and the length must be at least 3 characters long"
+          }
+        }
+      }
+    },
+    "/orders": {
+      "get": {
+        "summary": "Read all orders",
+        "description": "Returns all orders registered in the store in an array",
+        "tags": ["Orders"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "aplication/json": {
+                "type": "array",
+                "schema": {
+                    "items": {
+                      "$ref": "#/components/schemas/Orders"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Register a new order",
+        "description": "Allows registering a new request if the user has the credentials recognized",
+        "tags": ["Orders"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "properties": {
+                  "productsIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "order": {
+                  "productsIds": {
+                    "value": [1, 2]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "aplication/json": {
+                "type": "array",
+                "schema": {
+                  "properties": {
+                    "userId": {
+                      "type": "number"
+                    },
+                    "productsIds": {
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token not found or invalid"
+          },
+          "400": {
+            "description": "'productsIds' is required"
+          },
+          "422": {
+            "description": "'productsIds' must be an array and must include only numbers"
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "summary": "Register a new user",
+        "description": "Allows the registration of a new user in the store's database",
+        "tags": ["Users"],
+        "requestBody": {
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Users"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "username": "MAX",
+                    "vocation": "swordsman",
+                    "level": 10,
+                    "password": "SavingPeople"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "'username', 'password', 'level' and 'vocation' are required"
+          },
+          "422": {
+            "description": "'username' must be a string and the length must be at least 3 characters long. 'password' must be a string and the length must be at least 8 characters long. 'level must be a number greater than or equal to 1. 'vocation' must be a string and the length must be at least 3 characters long"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "Login of Users",
+        "description": "Allows the login of users who already have a record in the store's database",
+        "tags": ["Users"],
+        "requestBody": {
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              },
+              "examples": {
+                "login": {
+                  "value": {
+                    "username": "string",
+                    "password": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "'username' and 'password' are required"
+          },
+          "422": {
+            "description": "'username' must be a string and the length must be at least 3 characters long. 'password' must be a string and the length must be at least 8 characters long"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Products": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          }
+        }
+      },
+      "Orders": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "userId": {
+            "type": "number"
+          },
+          "productsIds": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "Users": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "vocation": {
+            "type": "string"
+          },
+          "level": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "Login": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
