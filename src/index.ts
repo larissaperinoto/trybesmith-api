@@ -2,7 +2,7 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerDocs from './swagger.json';
 import app from './app';
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 const PORT = 3000;
 
