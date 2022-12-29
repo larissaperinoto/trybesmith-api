@@ -1,12 +1,12 @@
 # TrybeSmith API
 
-A [Trybe](https://www.betrybe.com/) é uma escola de tecnologia com foco em formação de Desenvolvedores Web e o projeto TrybeSmith foi proposto como atividade de aprimoramento dos estudos sobre desenvolvimento back-end com TypeScript. 
+[Trybe](https://www.betrybe.com/) is a technology school focused on training Web Developers and the TrybeSmith project was proposed as an activity to improve studies on back-end development with TypeScript.
 
-## Objetivo
+## Description
 
-A aplicação desenvolvida é uma API e um banco de dados com o conteúdo de um loja de artigos medievais. A aplicação deve permitir fazer operações de criação, leitura, atualização e remoção dos artigos no banco de dados da loja. Além de realizar as devidas autenticações para conceder permissões aos usuários.
+The developed application is an API and a database with the content of a medieval articles store. The application must allow creating, reading, updating and removing items from the store's database. It also performs authentication to grant permissions to users when creating new orders.
 
-## Tecnologias e Ferramentas
+## Technologies and Tools
 <div>
     <img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" alt="mysql"/>
     <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="nodejs"/>
@@ -19,7 +19,7 @@ A aplicação desenvolvida é uma API e um banco de dados com o conteúdo de um 
 
 <br>
 
-Na elaboração da API RESTful utilizou-se a arquitetura **Model-Service-Controller(MSC)**, além das seguintes ferramentas:
+In the elaboration of the RESTful API, the **Model-Service-Controller(MSC)** architecture was used, in addition to the following tools:
 
 - [TypeScript](https://www.typescriptlang.org/)
 - [Node.JS](https://nodejs.org/en/)
@@ -30,36 +30,37 @@ Na elaboração da API RESTful utilizou-se a arquitetura **Model-Service-Control
 - [JWT](https://jwt.io/)
 - [Joi](https://joi.dev/api/)
 
-## ⚙️ Execução
+## ⚙️ How to use
 
-Para executar a aplicação inicie realizando o clone deste repositório com o comando abaixo.
+To run the application, start by making a clone of this repository with the command below.
 
     git clone git@github.com:larissaperinoto/trybesmith-api.git
     
-Navegue até a raíz do projeto.
+Navigate to the project root.
 
     cd trybesmith-api/
     
 <details>
-   <summary><strong>Rodando local</strong></summary> 
+   <summary><strong>Running locally</strong></summary> 
   </br>
-  <strong>Obs:</strong> Para rodar a aplicação dessa forma você deve ter o [Node.JS](https://nodejs.org/en/) instalado na sua máquina.
+  <strong>Obs:</strong> To run the application this way you must have [Node.JS](https://nodejs.org/en/) installed on your machine.
   </br>
   </br>
-  Instale as dependências com o comando abaixo.
+  
+  Install the dependencies with the command below.
   
     npm install
   
-  Faça login no MySQL usando suas credenciais locais.
+  Login to MySQL using your local credentials.
   
-    mysql -r <seu-usuario> -p
+    mysql -r <your-username> -p
   
-  Logado na instância do MySQL execute o script **Trybesmith.sql** para a criação do banco de dados.  
+   Logged in the MySQL instance, run the **Trybesmith.sql** script to create the database.  
   
-  Faça uma cópia do arquivo **.env.example** com o nome **.env** e preencha com as informações que são necessárias para se conectar com o banco.
+   Make a copy of the file **.env.example** with the name **.env** and fill in the information that is necessary to connect with the database.
   
   <details>
-  <summary>Informações que devem estar presentes no arquivo <strong>.env</strong></summary>
+  <summary>Information that must be present in the file<strong>.env</strong></summary>
   
         MYSQL_USER=root
         MYSQL_PASSWORD=password
@@ -68,50 +69,64 @@ Navegue até a raíz do projeto.
   
   </details>
   
-  Inicie a aplicação com o comando abaixo.
+   Start the application with the command below.
   
     npm start
   
 </details>
 
 <details>
-   <summary><strong>Utilizando o Docker</strong></summary> 
+   <summary><strong>Running with Docker</strong></summary> 
   </br>
   
-  <strong>Obs:</strong> Para rodar a aplicação dessa forma você deve ter o [Docker](https://www.docker.com/) instalado na sua máquina.
+  <strong>Obs:</strong> To run the application this way you must have [Docker](https://www.docker.com/) installed on your machine.
   
   </br>
   
-  Na raíz do projeto, suba os containers <strong>trybesmith</strong> e <strong>trybesmith_db</strong> utilizando o docker-compose.
+  In the root of the project, upload the <strong>trybesmith</strong> and <strong>trybesmith_db</strong> containers using docker-compose.
 
     docker-compose up -d
     
-  Abra o terminal do container <strong>trybesmith</strong>.
+  Open the <strong>trybesmith</strong> container terminal.
 
     docker exec -it trybesmith bash
-
-  Uma vez no terminal do container, execute o comando abaixo para instalar as dependências do projeto.
+  
+   Once in the container terminal, run the command below to install the project's dependencies.
     
     npm install
     
-  Para se conectar com o banco de dados, abra o terminal do container <strong>trybesmith_db</strong>.
+  To connect to the database, open the  <strong>trybesmith_db</strong> container's terminal.
   
     docker exec -it trybesmith_db bash
     
-  Faça login no banco de dados utilizando as credencias descritas no arquivo <strong>docker-compose.yaml</strong>.
+  Login to the database using the credentials described in the <strong>docker-compose.yaml</strong> file.
   
     mysql -r root -p
-
-  Logado na instância do MySQL execute o script **Trybesmith.sql** para a criação do banco de dados.  
+  
+  Logged in the MySQL instance, run the **Trybesmith.sql** script to create the database. 
   
     npm prestart
     
-  Inicie a aplicação com o comando abaixo.
+   Start the application with the command below.
   
     npm start
     
 </details>
 
+## Routes
+
+ You can check all the routes by accessing the /docs endpoint in your browser when running the application.
+
+<details>
+    <summary>Routes preview</summary>
+    
+    
+![Captura de tela de 2022-12-29 15-53-00](https://user-images.githubusercontent.com/98956659/209998561-e55a123f-8cf9-4708-969d-8a6a269daf92.png)
+    
+    
+</details>
+
+
 ---
  
-Desenvolvido por [Larissa Perinoto](www.linkedin.com/in/larissaperinoto), © 2022.
+Develop by [Larissa Perinoto](www.linkedin.com/in/larissaperinoto), © 2022.
