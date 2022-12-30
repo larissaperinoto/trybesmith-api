@@ -15,6 +15,7 @@ The developed application is an API and a database with the content of a medieva
     <img src="https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white" alt="sequelize"/>
     <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="typescript"/>
     <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white" alt="jwt"/> 
+    <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=white" alt="Swagger"/>
 </div>
 
 <br>
@@ -129,4 +130,4 @@ Navigate to the project root.
 
 ---
  
-Develop by [Larissa Perinoto](www.linkedin.com/in/larissaperinoto), © 2022.
+Developed by [Larissa Perinoto](www.linkedin.com/in/larissaperinoto), © 2022.
